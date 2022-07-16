@@ -18,6 +18,7 @@ resource "github_repository" "repository" {
 }
 
 resource "github_branch" "development" {
+  count        = length(var.repo_names)
   repository = github_repository.repository[count.index].full_name
   branch     = "development"
 }
