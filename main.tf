@@ -18,7 +18,7 @@ resource "github_repository" "repository" {
 }
 
 resource "github_branch" "development" {
-  repository = github_repository.repository.full_name
+  repository = github_repository[count.index].repository.full_name
   branch     = "development"
 }
 
@@ -31,7 +31,7 @@ resource "tfe_workspace" "workspace" {
     identifier     = github_repository.repository[count.index].full_name
     oauth_token_id = "ot-mXXzSCqaPqstMCLw"
   }
-  tag_names = var.repo_names[count.index]
+  tag_names           = [var.repo_names[count.index]]
 }
 resource "tfe_workspace" "workspace_dev" {
   count               = length(var.repo_names)
@@ -42,5 +42,5 @@ resource "tfe_workspace" "workspace_dev" {
     identifier     = github_repository.repository[count.index].full_name
     oauth_token_id = "ot-mXXzSCqaPqstMCLw"
   }
-  tag_names           = "${concat(var.repo_names[count.index], ["dev"])}"
+  tag_names           = concat(var.repo_names[count.index], ["dev"])
 }
