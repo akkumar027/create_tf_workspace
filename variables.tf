@@ -1,4 +1,4 @@
-variable workspace_names {
+variable repo_names {
     type = list(string)
-    description = "List of all the WS names"
+    description = "List of all the repo names"
 }
