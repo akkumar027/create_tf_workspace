@@ -24,7 +24,7 @@ resource "github_branch" "development" {
 }
 
 resource "tfe_workspace" "workspace" {
-  count                   = length(var.ad_group_names)
+  count                   = length(var.repo_names)
   name                    = var.repo_names[count.index]
   organization            = "ak-learn-tf"
   speculative_enabled     = true
@@ -33,7 +33,7 @@ resource "tfe_workspace" "workspace" {
   tags                    = var.repo_names[count.index]
 }
 resource "tfe_workspace" "workspace_dev" {
-  count                   = length(var.ad_group_names)
+  count                   = length(var.repo_names)
   name                    = "${var.repo_names[count.index]}_dev"
   organization            = "ak-learn-tf"
   speculative_enabled     = true
