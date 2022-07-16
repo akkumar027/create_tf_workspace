@@ -28,7 +28,7 @@ resource "tfe_workspace" "workspace" {
   organization        = "ak-learn-tf"
   speculative_enabled = true
   vcs_repo {
-    identifier     = github_repository.repository.full_name
+    identifier     = github_repository.repository[count.index].full_name
     oauth_token_id = "ot-mXXzSCqaPqstMCLw"
   }
   tag_names = var.repo_names[count.index]
@@ -39,7 +39,7 @@ resource "tfe_workspace" "workspace_dev" {
   organization        = "ak-learn-tf"
   speculative_enabled = true
   vcs_repo {
-    identifier     = github_repository.repository.full_name
+    identifier     = github_repository.repository[count.index].full_name
     oauth_token_id = "ot-mXXzSCqaPqstMCLw"
   }
   tag_names           = "${concat(var.repo_names[count.index], ["dev"])}"
