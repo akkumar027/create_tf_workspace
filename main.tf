@@ -32,7 +32,7 @@ resource "tfe_workspace" "workspace" {
        identifier              = github_repository.repository.full_name
        oauth_token_id          = "ot-mXXzSCqaPqstMCLw"
   }
-  tags                    = var.repo_names[count.index]
+  tag_names                    = var.repo_names[count.index]
 }
 resource "tfe_workspace" "workspace_dev" {
   count                   = length(var.repo_names)
@@ -43,5 +43,5 @@ resource "tfe_workspace" "workspace_dev" {
        identifier              = github_repository.repository.full_name
        oauth_token_id          = "ot-mXXzSCqaPqstMCLw"
   }
-  tags                    = "${concat(var.repo_names[count.index], ["dev"])}"
+  tag_names               = "${concat(var.repo_names[count.index], ["dev"])}"
 }
