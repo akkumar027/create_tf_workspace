@@ -18,7 +18,7 @@ resource "github_repository" "repository" {
 }
 
 resource "github_branch" "development" {
-  repository = github_repository[count.index].repository.full_name
+  repository = github_repository.repository[count.index].full_name
   branch     = "development"
 }
 
@@ -42,5 +42,5 @@ resource "tfe_workspace" "workspace_dev" {
     identifier     = github_repository.repository[count.index].full_name
     oauth_token_id = "ot-mXXzSCqaPqstMCLw"
   }
-  tag_names           = concat(var.repo_names[count.index], ["dev"])
+  tag_names           = concat([var.repo_names[count.index]], ["dev"])
 }
