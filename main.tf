@@ -38,6 +38,6 @@ resource "tfe_workspace" "workspace_dev" {
   organization            = "ak-learn-tf"
   speculative_enabled     = true
   identifier              = github_repository.repository.full_name
-  oauth_token_id          = "ot-aNQYLytkGT4dd3Lr"
+  oauth_token_id          = "ot-mXXzSCqaPqstMCLw"
   tags                    = "${concat(var.repo_names[count.index], ["dev"])}"
 }
