@@ -1,1 +1,1 @@
-workspace_names = ["alpha", "beta", "gamma"]
+repo_names = ["alpha", "beta", "gamma"]
