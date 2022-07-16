@@ -13,7 +13,6 @@ terraform {
 resource "github_repository" "repository" {
   count        = length(var.repo_names)
   name         = var.repo_names[count.index]
-  organization = "akkumar027"
   visibility   = "public"
   auto_init    = true
 }
@@ -28,7 +27,7 @@ resource "tfe_workspace" "workspace" {
   name                = var.repo_names[count.index]
   organization        = "ak-learn-tf"
   speculative_enabled = true
-  vcs_repo = {
+  vcs_repo {
     identifier     = github_repository.repository.full_name
     oauth_token_id = "ot-mXXzSCqaPqstMCLw"
   }
@@ -39,9 +38,9 @@ resource "tfe_workspace" "workspace_dev" {
   name                = "${var.repo_names[count.index]}_dev"
   organization        = "ak-learn-tf"
   speculative_enabled = true
-  vcs_repo = {
+  vcs_repo {
     identifier     = github_repository.repository.full_name
     oauth_token_id = "ot-mXXzSCqaPqstMCLw"
   }
-  tag_names = concat(var.repo_names[count.index], ["dev"])
+  tag_names           = "${concat(var.repo_names[count.index], ["dev"])}"
 }
